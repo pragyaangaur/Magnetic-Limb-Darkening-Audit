@@ -1,0 +1,19 @@
+# Model minus observation offsets in the limb-darkening steepness parameters,
+# as reported by Kostogryz et al. (2024), Nature Astronomy 8, 929,
+# "Magnetic origin of the discrepancy between stellar limb-darkening models
+# and observations". arXiv:2403.00118.
+#
+# Definitions used in that paper:
+#   h1' = I(mu=2/3) / I(mu=1)
+#   h2' = I(mu=2/3) / I(mu=1)  -  I(mu=1/3) / I(mu=1)
+#
+# The offsets are between h' inferred from transit light curves (the Kepler and
+# TESS samples of Maxted 2023, MNRAS 519, 3723) and h' evaluated directly from
+# non-magnetic model atmospheres (REFLD, MPS-ATLAS set 1). The paper attributes
+# these offsets to small-scale surface magnetic fields.
+#
+# Values are percentages, quoted in the Methods section under
+# "Limb darkening without magnetic fields".
+sample,n_targets,dh1_percent,dh1_err_percent,dh2_percent,dh2_err_percent
+Kepler,33,0.6,0.2,-1.2,0.4
+TESS,10,0.4,0.3,-0.9,0.4

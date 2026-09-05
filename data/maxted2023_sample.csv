@@ -1,0 +1,17 @@
+# Mean fundamental parameters of the transit host stars whose limb darkening
+# Maxted (2023) measured, and the typical quoted uncertainties on them.
+#
+# SOURCE: Maxted (2023), MNRAS 519, 3723, Section 4.3.1 and Table 1.
+# Parameters come from SWEET-Cat (Sousa et al. 2021), with log g from Gaia eDR3
+# where available.
+#
+# The sample mean is quoted directly in the text: "The mean values of Teff,
+# log g and [Fe/H] for the stars in our sample are <Teff> = 6355 K,
+# <log g> = 4.39 and <[Fe/H]> = 0.23."
+#
+# The typical uncertainties are read off the Table 1 entries. They are the
+# quoted formal errors on individual stars, not a systematic scale error.
+quantity,value,typical_uncertainty,units,note
+Teff,6355,60,K,sample mean; per-star errors run from about 20 to 290 K
+logg,4.39,0.03,dex,mostly from Gaia eDR3 parallaxes
+[Fe/H],0.23,0.05,dex,spectroscopic, SWEET-Cat

@@ -1,0 +1,30 @@
+# Contrast of bright magnetic features relative to the quiet Sun, against mu,
+# in the photospheric continuum.
+#
+# SOURCE 1, VERIFIED: Pietrow, Sumra, Petit dit de la Roche, Loessnitz, Denker,
+# Assmus (2026), arXiv:2606.28887, abstract and conclusions read directly.
+# SDO/HMI 6173 A, stray-light corrected, four alpha-sunspot regions. Facular and
+# network contrast rise from disc centre, PEAK near mu = 0.3, then DECLINE
+# towards the limb. Peak excess relative to quiet Sun about 4 per cent for
+# faculae and 2 per cent for network. The authors state these are a LOWER LIMIT,
+# because their AIA 1700 A segmentation masks admit quiet Sun at feature
+# boundaries. They also note the older reports of a monotonic rise to the limb
+# (Foukal et al. 1991, Kotov and Koutchmy 1994) are not reproduced.
+#
+# SOURCE 2, SECONDARY CITATION ONLY: Yeo, Solanki and Krivova (2013), A&A 550,
+# A95, arXiv:1302.1442. I downloaded and read this paper. It is SDO/HMI at
+# 6173 A and it confirms that continuum contrast is weakest near disc centre,
+# rises to a maximum and then declines towards the limb, and that the maximum
+# contrast C_IC,max rises with magnetogram signal. The peak value is presented
+# in their Figure 14 as a function of <Bl>/mu and is NOT stated as a number in
+# the text. The 10 per cent figure below is Pietrow et al.'s (2026) reading of
+# that figure, quoted in their discussion as "peak contrast values approaching
+# 10 per cent". I have not read the value off the figure myself.
+#
+# The analysis in a03 does not depend on the exact value. It scans contrast
+# continuously and reports that no published contrast makes the required
+# filling factor fall below about 0.15.
+feature,mu_peak,contrast_peak,contrast_disc_centre,source,verification,note
+faculae,0.30,0.04,0.001,Pietrow et al. 2026,read from the paper,stated lower limit
+network,0.30,0.02,0.001,Pietrow et al. 2026,read from the paper,stated lower limit
+bright features (strong field),0.30,0.10,0.001,Yeo et al. 2013,secondary citation via Pietrow et al. 2026,read from their Fig 14 by Pietrow not by me

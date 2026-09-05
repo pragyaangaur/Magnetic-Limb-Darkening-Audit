@@ -1,0 +1,17 @@
+# Measured solar centre-to-limb variation, as 5th-order polynomials in mu.
+# I(mu)/I(mu=1) = sum_k a_k mu^k, with mu = cos(theta) = sqrt(1 - (r/R)^2).
+# Coefficients are normalised so that sum_k a_k = 1.
+#
+# PROVENANCE. Both rows are transcribed from Table 1 of
+#   Hestroffer, D. and Magnan, C. (1998), Astronomy and Astrophysics 333, 338,
+#   "Wavelength dependency of the Solar limb darkening",
+# which reproduces the two original determinations at lambda = 579.88 nm:
+#   PS77  Pierce, A. K. and Slaughter, C. D. (1977), Solar Physics 52, 179
+#   NL94  Neckel, H. and Labs, D. (1994), Solar Physics 153, 91
+#
+# These are the only two widely used independent measurements of the solar
+# centre-to-limb variation in the visible. They are the calibration anchor for
+# every claim in this project.
+source,wavelength_nm,a0,a1,a2,a3,a4,a5
+PS77,579.88,0.30505,1.13123,-0.78604,0.40560,0.02297,-0.07880
+NL94,579.88,0.28392,1.36896,-1.75998,2.22154,-1.56074,0.44630

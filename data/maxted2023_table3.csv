@@ -1,0 +1,43 @@
+# Mean offsets between limb-darkening parameters measured from transit light
+# curves and those predicted by published model-atmosphere libraries.
+#
+# SOURCE: Maxted, P. F. L. (2023), MNRAS 519, 3723, Table 3, the b < 0.65
+# subsample. VERIFIED AGAINST THE PUBLISHED JOURNAL VERSION at
+# academic.oup.com/mnras/article/519/3/3723/6958819, not the arXiv preprint.
+# All nine Kepler rows and all five TESS rows match.
+#
+# Definitions, following Maxted (2018):
+#   h1 = I(mu=2/3) / I(mu=1)
+#   h2 = I(mu=2/3) / I(mu=1)  -  I(mu=1/3) / I(mu=1)
+#
+# SIGN CONVENTION. These are Maxted's published values as printed, which are
+# observed minus model. A positive dh1 means the star is brighter at mu = 2/3
+# than the model predicts, which is the direction Kostogryz et al. (2024)
+# attribute to surface magnetic fields.
+#
+# UNITS. Kostogryz et al. (2024) quote the MPS-ATLAS Set 1 rows as
+# "dh1' = +0.6 per cent" and "dh2' = -1.2 per cent" for Kepler and
+# "+0.4 per cent" and "-0.9 per cent" for TESS. Those are these absolute values
+# multiplied by 100, not relative percentages. Maxted's own abstract states the
+# same quantity as "a small but significant offset dh1' ~ 0.006".
+#
+# sigma_ext is the excess star-to-star scatter, not the error on the mean.
+#
+# NOTE ON THE PREPRINT. arXiv:2212.09117 is v1 only, posted before acceptance.
+# Its Table 3 carries the opposite sign to the published version. The published
+# values are the ones here.
+passband,model_library,dh1,dh1_err,sigma_ext1,dh2,dh2_err,sigma_ext2,n_stars,note
+Kepler,Stagger-grid (Maxted 2018),0.007,0.002,0.006,-0.007,0.004,0.013,21,
+Kepler,MPS-ATLAS Set 1 (Kostogryz 2022),0.006,0.002,0.004,-0.012,0.004,0.012,24,this is REFLD
+Kepler,MPS-ATLAS Set 2 (Kostogryz 2022),0.009,0.002,0.005,-0.013,0.003,0.013,24,same code, other abundance scale
+Kepler,ATLAS (Claret & Bloemen 2011),0.006,0.002,0.005,-0.013,0.004,0.013,24,
+Kepler,ATLAS (Sing 2010),0.003,0.001,0.004,-0.013,0.003,0.012,24,
+Kepler,sATLAS (Neilson & Lester 2013),0.035,0.003,0.010,-0.011,0.004,0.014,24,spherical; mass M = 1.1 Msun
+Kepler,ATLAS (Neilson & Lester 2013),-0.022,0.004,0.014,0.036,0.004,0.014,24,plane-parallel
+Kepler,PHOENIX-COND (Claret 2018),0.010,0.003,0.009,-0.003,0.004,0.013,24,linear correction for [Fe/H]
+Kepler,MARCS (Morello 2022),0.029,0.002,0.009,-0.025,0.004,0.015,23,linear correction for [Fe/H]
+TESS,Stagger-grid (Maxted 2018),0.006,0.004,0.002,-0.001,0.007,0.005,6,
+TESS,MPS-ATLAS Set 1 (Kostogryz 2022),0.004,0.003,0.005,-0.009,0.004,0.002,10,this is REFLD
+TESS,MPS-ATLAS Set 2 (Kostogryz 2022),0.006,0.003,0.005,-0.010,0.004,0.002,10,same code, other abundance scale
+TESS,ATLAS (Claret 2017),0.005,0.003,0.005,-0.011,0.004,0.001,10,microturbulence 2 km/s
+TESS,PHOENIX-COND (Claret 2018),0.011,0.004,0.008,-0.002,0.006,0.005,10,linear correction for [Fe/H]
