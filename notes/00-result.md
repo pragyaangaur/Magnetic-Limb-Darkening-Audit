@@ -36,7 +36,7 @@ What remains true is narrower: only MPS-ATLAS and MURaM have been checked agains
 
 **The offsets are absolute, not relative.** Kostogryz et al. write "Δh1′ = 0.6 % ± 0.2 %". Maxted's abstract states the same quantity as "a small but significant offset Δh1′ ~ 0.006". They are absolute differences multiplied by 100. All four Kepler and TESS values match Table 3 exactly. Table 3 in `data/` is taken from the journal version, which carries the opposite sign to the arXiv preprint, so do not mix the two.
 
-**The sample is not solar.** Maxted's means are Teff = 6355 K, log g = 4.39, [Fe/H] = +0.23. It is 43 FGK stars dominated by F types. Kostogryz et al. restrict their MURaM simulations to a solar atmosphere on the stated grounds that the sample has near-solar parameters. It is 578 K hotter than the Sun and metal rich, and their own 2026 follow-up finds the magnetic effect grows towards hotter and more metal-rich stars.
+**The sample is not solar.** Maxted's means are Teff = 6355 K, log g = 4.39, [Fe/H] = +0.23. It is 43 FGK stars dominated by F types. Kostogryz et al. restrict their MURaM simulations to a solar atmosphere on the stated grounds that the sample has near-solar parameters. It is 583 K hotter than the Sun and metal rich, and their own 2026 follow-up finds the magnetic effect grows towards hotter and more metal-rich stars.
 
 ## Finding 1: h2 does not carry the weight placed on it
 
