@@ -1,0 +1,40 @@
+# Private working material. These directories stay on disk and are never
+# published, because they are either not mine to redistribute or not written
+# for anyone else to read.
+
+# Downloaded copies of published papers. The reading notes are public in
+# notes/03-sources.md, the PDFs are not.
+papers/
+
+# Unsent correspondence and the checks to run before sending it.
+emails/
+
+# Context file for tooling, not part of the project.
+AGENTS.md
+
+# Earlier private notes from the software phase. The current write-ups live in
+# notes/ and are tracked, because they are the point of the project now.
+reports/
+plan.html
+
+# Bulk science data. data/ is tracked because it holds transcribed reference
+# values and one published coefficient table, not bulk downloads.
+downloads/
+*.fits
+*.fits.gz
+*.jp2
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.DS_Store

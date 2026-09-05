@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: A systematics audit of the magnetic limb-darkening result
+message: If you use this audit or its numbers, please cite it as below.
+type: software
+authors:
+  - given-names: Pragyaan
+    family-names: Gaur
+    email: pragyaangaur12@gmail.com
+repository-code: https://github.com/pragyaangaur/magnetic-limb-darkening-audit
+abstract: An independent systematics audit of Kostogryz et al. (2024), who attribute the offset between observed and modelled stellar limb darkening to small-scale surface magnetic fields. The audit finds that the h1 half of the result survives every test applied here, and that the h2 half is the size of an analysis systematic measured and flagged by Maxted (2023), the paper the observed values come from. Every number is regenerated from published data by the scripts in this repository.
+keywords:
+  - limb darkening
+  - stellar atmospheres
+  - transiting exoplanets
+  - solar magnetic fields
+  - systematics
+license: BSD-3-Clause
+date-released: "2026-09-05"
