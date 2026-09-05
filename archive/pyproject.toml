@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "solarbatman"
+version = "0.1.0"
+description = "Occultation light curve modelling for the Sun, built on the batman transit model"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Pragyaan Gaur", email = "pragyaangaur12@gmail.com" }]
+keywords = ["solar physics", "occultation", "transit", "photometry", "limb darkening"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.9",
+    "batman-package>=2.4",
+]
+
+[project.optional-dependencies]
+solar = ["sunpy[map,net]>=6.0", "astropy>=5.3", "drms>=0.6"]
+plot = ["matplotlib>=3.6"]
+test = ["pytest>=7.0", "pytest-doctestplus"]
+dev = ["solarbatman[solar,plot,test]", "ruff"]
+
+[project.urls]
+Source = "https://github.com/pragyaangaur/magnetic-limb-darkening-audit"
+Issues = "https://github.com/pragyaangaur/magnetic-limb-darkening-audit/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "NPY"]
