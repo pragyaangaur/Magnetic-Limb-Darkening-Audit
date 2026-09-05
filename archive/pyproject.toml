@@ -31,8 +31,8 @@ test = ["pytest>=7.0", "pytest-doctestplus"]
 dev = ["solarbatman[solar,plot,test]", "ruff"]
 
 [project.urls]
-Source = "https://github.com/pragyaangaur/magnetic-limb-darkening-audit"
-Issues = "https://github.com/pragyaangaur/magnetic-limb-darkening-audit/issues"
+Source = "https://github.com/pragyaangaur/Magnetic-Limb-Darkening-Audit"
+Issues = "https://github.com/pragyaangaur/Magnetic-Limb-Darkening-Audit/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
