@@ -1,0 +1,6 @@
+# Change in non-magnetic MPS-ATLAS limb darkening between solar
+"# parameters and the Maxted (2023) sample mean, same library and"
+"# same passband on both sides, so no wavelength mismatch."
+passband,dh1_sample_minus_solar,dh2_sample_minus_solar
+Kepler,+0.01590,-0.01530
+TESS,+0.01529,-0.01490
