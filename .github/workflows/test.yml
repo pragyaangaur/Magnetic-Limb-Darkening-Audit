@@ -1,0 +1,37 @@
+name: reproduce
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install numpy scipy matplotlib pytest ruff
+      - name: Lint
+        run: ruff check analysis
+      - name: Doctests
+        working-directory: analysis
+        run: python -m pytest --doctest-modules ldlib.py -q
+      - name: Check against the published numbers
+        working-directory: analysis
+        run: python verify.py
+      - name: Reproduce every result
+        working-directory: analysis
+        run: |
+          python a01_signal_versus_library_spread.py
+          python a02_stellar_parameter_systematics.py
+          python a03_facular_chord_test.py
+          python a04_solar_anchor.py
+          python a05_figure.py
+          python a06_h2_reliability.py
+          python a07_solar_residual.py
+      - name: Check the committed tables match the ones just built
+        run: git diff --exit-code -- results/tables
