@@ -38,3 +38,6 @@ venv/
 env/
 .ipynb_checkpoints/
 .DS_Store
+
+# Local editor and tooling config
+.claude/
