@@ -57,6 +57,8 @@ Run the verification first, because it checks the table readers, the interpolati
 python analysis/verify.py
 ```
 
+The same fourteen checks also run under `python -m pytest -q`, which fails if any of them fails.
+
 Each analysis script is independent of the others. Run them from anywhere.
 
 ```bash
