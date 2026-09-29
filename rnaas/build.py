@@ -99,7 +99,11 @@ def facular_requirement(band):
 
 
 def figure(numbers, path):
+    # AAS asks for common fonts and embedded TrueType rather than Type 3.
     plt.rcParams.update({
+        "font.family": "sans-serif",
+        "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
+        "pdf.fonttype": 42,
         "font.size": 8, "axes.edgecolor": MUTED, "axes.labelcolor": INK,
         "xtick.color": MUTED, "ytick.color": MUTED, "axes.linewidth": 0.6,
         "xtick.major.width": 0.6, "ytick.major.width": 0.6,
@@ -139,6 +143,10 @@ def figure(numbers, path):
             e = numbers["facular"][band][label]["excess_one_third"]
             ax.plot([c * 100 for c in contrast], [e / c for c in contrast],
                     color=colours[band], lw=1.6, ls=style)
+        # Name each band on its solid line, so identity does not rest on colour.
+        e = numbers["facular"][band]["published"]["excess_one_third"]
+        ax.text(29.5, e / 0.295 * 1.12, band, color=INK, fontsize=7,
+                ha="right", va="bottom")
     for c in (CONTRAST_FACULAE, CONTRAST_STRONG):
         ax.axvline(c * 100, color=MUTED, lw=0.6, ls=":")
     ax.text(CONTRAST_FACULAE * 100 + 0.4, 1.02, "faculae", fontsize=6.5, color=MUTED)
@@ -152,11 +160,9 @@ def figure(numbers, path):
     ax.set_axisbelow(True)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
-    ax.plot([], [], color=BLUE, lw=1.6, label="Kepler")
-    ax.plot([], [], color=ORANGE, lw=1.6, label="TESS")
     ax.plot([], [], color=MUTED, lw=1.2, ls="-", label="published $h_2'$")
     ax.plot([], [], color=MUTED, lw=1.2, ls="--", label="$h_2'$ moved by 0.01")
-    ax.legend(fontsize=6.5, frameon=False, loc="lower left", ncol=2)
+    ax.legend(fontsize=6.5, frameon=False, loc="lower left")
 
     for ax, tag in zip(axes, "abc"):
         ax.text(-0.02, 1.04, f"({tag})", transform=ax.transAxes, fontsize=8,
