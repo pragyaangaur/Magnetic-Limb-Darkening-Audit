@@ -41,3 +41,6 @@ env/
 
 # Local editor and tooling config
 .claude/
+# The RNAAS note itself stays local. Only the script that builds its numbers is public.
+rnaas/*
+!rnaas/build.py
