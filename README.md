@@ -2,7 +2,7 @@
 
 Kostogryz et al. (2024, Nature Astronomy 8, 929) found that limb darkening from non-magnetic stellar atmosphere models is too steep compared with transit observations, and showed that small-scale surface magnetic fields account for the difference. They present the simultaneous fit to both steepness parameters, h1 and h2, as the strength of the result.
 
-This repository audits that claim. The h1 half survives every test applied here. The h2 half is the size of an analysis systematic that Maxted (2023), the paper the observed values come from, measures and warns about explicitly, and that the 2024 paper does not mention.
+This repository audits that claim. The h1 half is stable under reanalysis and matches the MURaM prediction, and the one non-magnetic explanation for it that this audit could not close is a temperature scale error of about 200 K. The h2 half is the size of an analysis systematic that Maxted (2023), the paper the observed values come from, measures and warns about explicitly, and that the 2024 paper does not mention.
 
 This is independent work and it has not been peer reviewed. Everything in it is computed from numbers published by other people, and `analysis/verify.py` checks the code against fourteen of those numbers before any result is produced. All fourteen pass, including an exact reproduction of a metallicity correction Maxted quotes. If something here is wrong, the fastest way to show it is to run the scripts and change the inputs, which is why the inputs are all in `data/` with their sources written next to them.
 
@@ -16,11 +16,13 @@ Read [`notes/00-result.md`](notes/00-result.md) for the full argument with every
 
 **h2 does not carry the weight placed on it.** Maxted (2023) section 4.2 reanalysed the sixteen stars common to his 2018 and 2023 studies, changing only the data processing and the fitting code. h1 shifted by 0.000 ± 0.008 and h2 shifted by 0.010 ± 0.002, and he concludes that h2 "may be affected by systematic errors ~0.01 depending on the details of the analysis". The h2 offset being interpreted is 0.012. Separately, his section 4.3.4 quotes the MURaM 100 G prediction from Norris et al. (2017) as +0.007 in h1 and −0.005 in h2, against observed values of +0.006 and −0.012, so h1 agrees to fifteen per cent while h2 is out by a factor of 2.4. See `analysis/a06_h2_reliability.py`.
 
-**Stellar parameter systematics cannot do it.** Producing the offset needs a metallicity scale error of −0.44 dex or a temperature scale error of +247 K, against SWEET-Cat uncertainties of 0.05 dex and 60 K. The values required by the Kepler and TESS samples agree with each other, which is what a genuine scale error looks like. Ten times the formal error in the same direction for two independently assembled samples is not credible. See `analysis/a02_stellar_parameter_systematics.py`.
+**A metallicity scale error cannot do it, and a temperature scale error still could.** Using h1 alone, which keeps the h2 systematic out of the test, the Kepler offset needs a metallicity scale error of −0.38 ± 0.13 dex. That would turn a sample with mean [Fe/H] = +0.23 into a metal-poor one, so it is excluded. The same offset needs a temperature scale error of +206 ± 69 K, or +247 K when h2 is included. Tayar et al. (2022) put the systematic floor on the effective temperature scale at about 2.4 per cent, which is 153 K at the sample mean, so a shift of this size cannot be excluded. See `analysis/a02_stellar_parameter_systematics.py` and `rnaas/build.py`.
 
-**Bright magnetic features on the transit chord cannot do it.** This is the objection Maxted (2023) raised in reply to his referee, and it has not been quantified until now. The offset requires the star to be 0.71 per cent brighter than the model at μ = 2/3 and 2.74 per cent brighter at μ = 1/3. With the facular contrast Pietrow et al. (2026) measured using HMI, that needs 69 per cent of the chord covered in faculae, and with the largest contrast in the literature it is still 27 per cent. Neither is possible for the bright, quiet stars this sample is made of. See `analysis/a03_facular_chord_test.py`.
+An earlier version of this README called the temperature route ruled out, because it compared +247 K with the SWEET-Cat per-star error of 60 K. A per-star error is the wrong yardstick for an error that every star shares, and that claim was withdrawn on 29 September 2026.
 
-Both of those results support the magnetic interpretation, and neither appears to have been shown before.
+**Bright magnetic features on the transit chord are unlikely to do it.** This is the objection Maxted (2023) raised in reply to his referee, and it has not been quantified until now. The offset requires the star to be 0.71 per cent brighter than the model at μ = 2/3. Facular contrast at μ = 2/3 cannot exceed its peak, so from h1 alone the chord must be at least 18 per cent covered at the HMI facular contrast of Pietrow et al. (2026), and at least 7 per cent at the largest contrast in the literature. Adding h2 fixes the brightening at μ = 1/3 at 2.74 per cent and raises these to 69 and 27 per cent. Those larger numbers depend on h2, and moving h2 by Maxted's 0.01 systematic brings them down to 30 and 12 per cent. Even the h1 bound is hard to meet for the bright, quiet stars this sample is made of. An earlier version called this ruled out on the strength of the h2 numbers. See `analysis/a03_facular_chord_test.py` and `rnaas/build.py`.
+
+The metallicity and facular results support the magnetic interpretation, and neither appears to have been shown before. The temperature scale is the non-magnetic route that is still open, and recomputing the offsets with temperatures from the infrared flux method would test it.
 
 **The reference model is the largest term.** The offset is a residual against one library. Maxted (2023) Table 3 gives the same measurement against nine non-magnetic libraries in the Kepler band, and Δh1 spans 0.057 across them, which is 9.5 times the signal. One library gives the opposite sign. Nothing in the transit data chooses between them. See `analysis/a01_signal_versus_library_spread.py`.
 
@@ -69,12 +71,13 @@ python analysis/a01_signal_versus_library_spread.py
 |---|---|
 | `verify.py` | fourteen cross-checks against numbers printed in the papers |
 | `a01_signal_versus_library_spread.py` | the signal against the disagreement between nine libraries |
-| `a02_stellar_parameter_systematics.py` | rules out a parameter scale error |
-| `a03_facular_chord_test.py` | rules out facular coverage of the chord |
+| `a02_stellar_parameter_systematics.py` | excludes a metallicity scale error and leaves a temperature scale error open |
+| `a03_facular_chord_test.py` | the facular coverage of the chord the offset would need |
 | `a04_solar_anchor.py` | the Sun is precise enough to rank the libraries |
 | `a05_figure.py` | the figure above |
 | `a06_h2_reliability.py` | whether the h2 offset is larger than its own systematic |
 | `a07_solar_residual.py` | what the passband conversion and the near-solar assumption are worth |
+| `rnaas/build.py` | reruns the `a02` and `a03` tests with h1 alone and with h2 moved by its systematic, and draws their figure |
 
 `analysis/ldlib.py` holds the shared readers, the interpolation over the model grid and the h1 and h2 definitions. Every script writes into `results/`, and `results/README.md` maps each output file back to the script that produces it. The workflow in `.github/workflows/` runs all of this on every push and fails if the committed tables no longer match the ones the code builds.
 
@@ -102,7 +105,7 @@ Maxted's Table 3 has been verified against the journal version at academic.oup.c
 
 The derivatives in `a02` are central differences at the sample mean. The proper calculation is star by star with each object's own parameters, which needs Maxted's Table 1 extracted from the PDF.
 
-The 10 per cent facular contrast attributed to Yeo et al. (2013) lives in their Figure 14 and is Pietrow et al.'s reading of it. `a03` does not depend on it, because it scans contrast continuously and the required filling factor stays above 0.09 even at 30 per cent.
+The 10 per cent facular contrast attributed to Yeo et al. (2013) lives in their Figure 14 and is Pietrow et al.'s reading of it. `a03` does not depend on it, because it scans contrast continuously.
 
 The MURaM 100 G values of +0.007 and −0.005 used in `a06` are the width of the shaded band in Figure 4 of Norris et al. (2017), read off a plot by Maxted. They are not tabulated anywhere and they carry an unstated reading error.
 

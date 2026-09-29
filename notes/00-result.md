@@ -1,6 +1,16 @@
 # The magnetic limb-darkening result rests on one parameter, not two
 
-Result note. Written 3 September 2026 and revised 5 September 2026 with the passband and near-solar checks. Every number is produced by a script in `analysis/` from data in `data/`. `analysis/verify.py` checks the pipeline against fourteen numbers printed in the source papers and all fourteen pass, including an exact reproduction of a metallicity correction Maxted quotes.
+Result note. Written 3 September 2026, revised 5 September 2026 with the passband and near-solar checks, and corrected 29 September 2026 as described in the next section. Every number is produced by a script in `analysis/` from data in `data/`. `analysis/verify.py` checks the pipeline against fourteen numbers printed in the source papers and all fourteen pass, including an exact reproduction of a metallicity correction Maxted quotes.
+
+## Correction, 29 September 2026
+
+Two claims in the first version of this note were too strong, and both are corrected below. The original reasoning is kept so the change can be checked.
+
+Finding 3 said a stellar parameter scale error is ruled out. It compared the +247 K temperature shift with the SWEET-Cat per-star error of 60 K. A per-star error is the wrong yardstick for an error shared by every star. Tayar et al. (2022, ApJ 927, 31) put the systematic floor on the effective temperature scale at about 2.4 per cent, which is 153 K at the sample mean. Using h1 alone, the Kepler offset needs +206 ± 69 K, so a temperature scale error cannot be excluded. The metallicity route stays excluded.
+
+Finding 4 said faculae on the chord are ruled out. The 69 and 27 per cent filling factors use the brightening at μ = 1/3, which depends on h2 and so carries the 0.01 systematic from finding 1. Using h1 alone gives a weaker lower bound of 18 per cent at the HMI facular contrast and 7 per cent at the largest published contrast. Faculae are now called unlikely.
+
+Both corrections came from requiring every conclusion to hold with h1 alone, which follows from finding 1. `rnaas/build.py` computes both versions of each test.
 
 ## What is new here, and what is not
 
@@ -10,9 +20,9 @@ The checklist has been worked through in full and it removed one of my claims. S
 
 **One.** The h2 offset that Kostogryz et al. (2024) interpret is the same size as an analysis systematic that Maxted (2023) measured and warned about in section 4.2 of the paper the offset comes from. I searched the whole 2024 paper including Methods: the word "uncertainty" appears once and is about something else, and "reliability", "caveat" and "scatter" do not appear at all. The only error quoted on the observed points is Maxted's error on the mean, which does not include this. Their central claim is that magnetised models "simultaneously explain the offsets in both limb darkening coefficients", and the second of those two is the weaker half.
 
-**Two.** Bright magnetic features on the transit chord are ruled out with numbers. Maxted raises this objection in section 4.3.2 in reply to his referee and states it qualitatively. Nobody has computed the required filling factor. It is 0.27 at the largest facular contrast in the literature and does not fall below 0.09 even at an absurd 30 per cent contrast.
+**Two.** Bright magnetic features on the transit chord are shown to be unlikely with numbers. Maxted raises this objection in section 4.3.2 in reply to his referee and states it qualitatively. Nobody has computed the required filling factor. From h1 alone it is at least 0.07 at the largest facular contrast in the literature, and 0.27 if the h2 offset is trusted.
 
-**Three.** A stellar parameter scale error is ruled out with numbers, using the reference library itself: it would need −0.44 dex in metallicity or +247 K in temperature.
+**Three.** A metallicity scale error is ruled out with numbers, using the reference library itself: from h1 alone it would need −0.38 dex. A temperature scale error would need about +206 K, which is not ruled out (see the correction above).
 
 **Four.** The signal placed next to the spread among the nine libraries Maxted compared. Computable from published numbers, and I have not seen it stated.
 
@@ -51,7 +61,7 @@ From `analysis/a06_h2_reliability.py`.
 
 The h2 offset is 1.2 times the analysis systematic in the Kepler band and 0.9 times it in TESS. Averaging over 24 stars beats down random scatter, but an analysis choice applies to every star at once and does not average down at all.
 
-The h1 result is in excellent condition by contrast. It is stable against reanalysis, it matches an independent MURaM prediction to fifteen per cent, and no non-magnetic explanation I could construct survives it.
+The h1 result is in excellent condition by contrast. It is stable against reanalysis and it matches an independent MURaM prediction to fifteen per cent. The one non-magnetic explanation for it that I could not close is a temperature scale error of about 200 K.
 
 The claim to check with the authors is narrow: the evidence appears to be one parameter rather than two, and the warning is in the paper the numbers came from.
 
@@ -74,7 +84,7 @@ From `analysis/a01_signal_versus_library_spread.py`, offsets as observed minus m
 
 Maxted himself writes that apart from the Neilson and Lester models the libraries agree fairly well, and the tight cluster around +0.006 is real. The point stands anyway: the two outliers are published, one has the opposite sign, and nothing in the transit data excludes them. Within MPS-ATLAS alone, changing the abundance scale moves h1 by 0.004, two thirds of the signal.
 
-## Finding 3: stellar parameters cannot do it
+## Finding 3: metallicity cannot do it, and temperature still could
 
 From `analysis/a02_stellar_parameter_systematics.py`, evaluated at the sample mean.
 
@@ -86,7 +96,9 @@ From `analysis/a02_stellar_parameter_systematics.py`, evaluated at the sample me
 
 The Kepler and TESS values agree with each other, which is what a real scale error would look like, but they are four to nine times the formal errors and would have to point the same way for every star in two independently assembled samples. Ruled out.
 
-## Finding 4: faculae on the chord cannot do it
+Corrected 29 September 2026. The paragraph above uses the per-star formal errors, which is the wrong comparison for a shared scale error. With h1 alone the required shifts are −0.38 ± 0.13 dex and +206 ± 69 K in Kepler, and −0.31 ± 0.23 dex and +144 ± 108 K in TESS. The metallicity shift would make a metal-rich sample metal poor and stays excluded. The temperature shift is 1.3 times the 153 K systematic floor of Tayar et al. (2022) and is not excluded.
+
+## Finding 4: faculae on the chord are unlikely to do it
 
 From `analysis/a03_facular_chord_test.py`.
 
@@ -99,6 +111,8 @@ The offset requires the star to be 0.71 per cent brighter than the model at μ =
 | 10 % (strong-field features) | Yeo et al. (2013) | 0.27 |
 
 A chord a quarter covered in faculae would show obvious rotational modulation and spot-crossing anomalies in stars selected for clean photometry. Ruled out, and this closes Maxted's own objection in his favour.
+
+Corrected 29 September 2026. The table above uses the brightening at μ = 1/3, which depends on h2. Moving h2 by its 0.01 systematic lowers the three filling factors to about 0.61, 0.30 and 0.12. With h1 alone, and because contrast at μ = 2/3 cannot exceed the peak, the lower bound is 0.18 at 4 per cent contrast and 0.07 at 10 per cent. These are still hard to meet for quiet stars, so faculae are unlikely, but the objection is not closed.
 
 Two caveats run the other way. The Pietrow contrasts are stated by their authors to be a lower limit. And nobody has measured facular contrast for an F star, which is what the sample is made of.
 

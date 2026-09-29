@@ -38,9 +38,9 @@ Read this carefully before starting step two, and watch for the circularity: the
 
 **How the magnetic signal compares with the disagreement between the libraries it is measured against.** Maxted (2023) published the numbers that make this computable and did not frame it this way. `analysis/a01`. This is the main result.
 
-**Whether a stellar parameter scale error could produce the offset.** Ruled out, `analysis/a02`. It would need half a dex in metallicity or 240 K in temperature.
+**Whether a stellar parameter scale error could produce the offset.** Partly settled, `analysis/a02`. From h1 alone it would need −0.38 dex in metallicity, which is excluded, or about 200 K in temperature, which is close to the 2.4 per cent systematic floor of Tayar et al. (2022) and is not excluded. This entry said "ruled out" until 29 September 2026.
 
-**Whether bright magnetic features on the transit chord could produce it.** Ruled out, `analysis/a03`. Maxted raises the objection qualitatively in his section 4.3.2 and nobody attached a number to it. It needs a filling factor of at least a quarter of the chord.
+**Whether bright magnetic features on the transit chord could produce it.** Unlikely, `analysis/a03`. Maxted raises the objection qualitatively in his section 4.3.2 and nobody attached a number to it. From h1 alone it needs at least 7 per cent of the chord covered at the largest published contrast. The quarter of the chord quoted here before 29 September 2026 depends on h2.
 
 **Ranking the libraries against the Sun.** Not done. The solar profiles are tabulated by wavelength, the libraries by passband, and only Kostogryz et al. (2022) built the conversion, for their own library. `analysis/a04` shows the solar measurement is a fiftieth of the library spread, so it would settle the ranking easily.
 
